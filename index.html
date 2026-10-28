@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechMart | Online Store</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="#" class="logo">
+        <span class="logo__icon" aria-hidden="true">🛒</span>
+        <span class="logo__text">TechMart</span>
+      </a>
+      <nav class="header-actions" aria-label="Account and cart">
+        <button class="btn btn--ghost" type="button">Login</button>
+        <button class="btn btn--primary btn--cart" type="button" aria-label="Cart">
+          <span aria-hidden="true">🛍️</span> Cart
+          <span class="badge" id="cart-count">1</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero__content">
+        <h1 class="hero__title">Big <span class="hero__highlight">Weekend Sale</span> on Gadgets</h1>
+        <p class="hero__subtitle">Up to 40% off on selected laptops, headphones, and accessories. Limited stocks only.</p>
+        <a href="#products" class="btn btn--primary hero__cta">Shop Deals</a>
+      </div>
+    </section>
+
+    <section class="filters" aria-labelledby="filter-title">
+      <h2 class="section-title" id="filter-title">Filter by</h2>
+      <div class="pill-group" role="group" aria-label="Product categories">
+        <button class="pill is-active" type="button" data-filter="all">All</button>
+        <button class="pill" type="button" data-filter="laptop">Laptops</button>
+        <button class="pill" type="button" data-filter="headphones">Headphones</button>
+        <button class="pill" type="button" data-filter="accessories">Accessories</button>
+      </div>
+    </section>
+
+    <section class="products" id="products" aria-labelledby="products-title">
+      <h2 class="section-title" id="products-title">Featured Products</h2>
+
+      <div class="product-grid">
+
+        <article class="card card--sale" data-category="laptop" data-rating="4.5">
+          <div class="card__image">
+            <span class="card__tag">Sale</span>
+            <span class="card__image-label">Laptop</span>
+          </div>
+          <h3 class="card__name">Ultrabook Pro 14"</h3>
+          <p class="card__meta">Intel i7 · 16GB RAM · 512GB SSD</p>
+          <p class="card__price">
+            <span class="price--current">₱54,990</span>
+            <s class="price--old">₱64,990</s>
+          </p>
+          <p class="rating" aria-label="Rated 4.5 out of 5">
+            <span class="rating__stars" aria-hidden="true">★★★★☆</span>
+            <span class="rating__value">(4.5)</span>
+          </p>
+          <button class="btn btn--card" type="button">Add to Cart</button>
+        </article>
+
+        <article class="card" data-category="headphones" data-rating="4.8">
+          <div class="card__image">
+            <span class="card__image-label">Headset</span>
+          </div>
+          <h3 class="card__name">Noise-Canceling Headphones</h3>
+          <p class="card__meta">Wireless · 30h battery · Fast charge</p>
+          <p class="card__price">
+            <span class="price--current">₱3,499</span>
+          </p>
+          <p class="rating" aria-label="Rated 4.8 out of 5">
+            <span class="rating__stars" aria-hidden="true">★★★★★</span>
+            <span class="rating__value">(4.8)</span>
+          </p>
+          <button class="btn btn--card btn--added" type="button">✓ Added</button>
+        </article>
+
+        <article class="card" data-category="accessories" data-rating="4.2">
+          <div class="card__image">
+            <span class="card__image-label">Mouse</span>
+          </div>
+          <h3 class="card__name">Ergonomic Wireless Mouse</h3>
+          <p class="card__meta">Silent click · 2.4 GHz · USB-C</p>
+          <p class="card__price">
+            <span class="price--current">₱799</span>
+          </p>
+          <p class="rating" aria-label="Rated 4.2 out of 5">
+            <span class="rating__stars" aria-hidden="true">★★★★☆</span>
+            <span class="rating__value">(4.2)</span>
+          </p>
+          <button class="btn btn--card" type="button">Add to Cart</button>
+        </article>
+
+        <article class="card card--low-stock" data-category="accessories" data-rating="4.0">
+          <div class="card__image">
+            <span class="card__tag card__tag--low">Low Stock</span>
+            <span class="card__image-label">Keyboard</span>
+          </div>
+          <h3 class="card__name">Mechanical Keyboard (RGB)</h3>
+          <p class="card__meta">Blue switches · RGB backlight</p>
+          <p class="card__price">
+            <span class="price--current">₱2,199</span>
+          </p>
+          <p class="rating" aria-label="Rated 4.0 out of 5">
+            <span class="rating__stars" aria-hidden="true">★★★★☆</span>
+            <span class="rating__value">(4.0)</span>
+          </p>
+          <button class="btn btn--card" type="button">Add to Cart</button>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 TechMart Online Store · Advanced CSS Demo</p>
+  </footer>
+</div>
+
+  <script>
+    (function () {
+      var countEl = document.getElementById('cart-count');
+      var pills = document.querySelectorAll('.pill');
+      var cards = document.querySelectorAll('.card');
+      var buttons = document.querySelectorAll('.btn--card');
+
+      function updateCount() {
+        countEl.textContent = document.querySelectorAll('.btn--added').length;
+      }
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var added = btn.classList.toggle('btn--added');
+          btn.textContent = added ? '✓ Added' : 'Add to Cart';
+          updateCount();
+        });
+      });
+
+      pills.forEach(function (pill) {
+        pill.addEventListener('click', function () {
+          pills.forEach(function (p) { p.classList.remove('is-active'); });
+          pill.classList.add('is-active');
+          var filter = pill.dataset.filter;
+          cards.forEach(function (card) {
+            card.hidden = !(filter === 'all' || card.dataset.category === filter);
+          });
+        });
+      });
+
+      updateCount();
+    })();
+  </script>
+</body>
+</html>
